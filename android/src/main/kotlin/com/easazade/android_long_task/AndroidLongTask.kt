@@ -147,7 +147,6 @@ class AndroidLongTask(private val activity: FlutterActivity, private val binaryM
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val intent = Intent()
             intent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
-            intent.data = Uri.parse("package:" + activity.packageName)
             activity.startActivity(intent)
         }
     }

@@ -48,6 +48,8 @@ class AppClient {
     return (await channel.invokeMethod(_IS_IGNORING_BATTERY_OPTIMIZATION) ?? false);
   }
 
+  ///WARNING: Requesting the setting this way can lead to a ban in the Google Play Store.
+  ///(More information: https://developer.android.com/training/monitoring-device-state/doze-standby)
   static Future<bool> requestIgnoringBatteryOptimizations() async {
     return (await channel.invokeMethod(_REQUEST_IGNORING_BATTERY_OPTIMIZATION) ?? false);
   }

@@ -4,9 +4,12 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Binder
+import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import android.provider.Settings
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import io.flutter.embedding.android.FlutterActivity
@@ -101,7 +104,7 @@ class AppService : Service() {
 
         wakeLock =
                 (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
-                    newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp::MyWakelockTag").apply {
+                    newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "AndroidLongTask::WakelockTag").apply {
                         acquire(120 * 60 * 1000L)
                     }
                 }

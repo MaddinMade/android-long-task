@@ -13,6 +13,10 @@ class AppClient {
   static const _RUN_DART_FUNCTION = 'RUN_DART_FUNCTION';
   static const _IS_SERVICE_RUNNING = 'IS_SERVICE_RUNNING';
   static const _NOTIFY_UPDATE = 'NOTIFY_UPDATE';
+  static const _REQUEST_IGNORING_BATTERY_OPTIMIZATION = 'REQUEST_IGNORING_BATTERY_OPTIMIZATION';
+  static const _IGNORE_BATTERY_OPTIMIZATION_SETTINGS = 'IGNORE_BATTERY_OPTIMIZATION_SETTINGS';
+  static const _IS_IGNORING_BATTERY_OPTIMIZATION = 'IS_IGNORING_BATTERY_OPTIMIZATION';
+
   // ignore: close_sinks
   static final _serviceDataStreamController = StreamController<Map<String, dynamic>?>.broadcast();
   static final MethodChannel channel = MethodChannel(_CHANNEL_NAME)
@@ -37,7 +41,19 @@ class AppClient {
   }
 
   static Future<bool> isServiceRunning() async {
-    return (await channel.invokeMethod(_IS_SERVICE_RUNNING)??false);
+    return (await channel.invokeMethod(_IS_SERVICE_RUNNING) ?? false);
+  }
+
+  static Future<bool> isIgnoringBatteryOptimizations() async {
+    return (await channel.invokeMethod(_IS_IGNORING_BATTERY_OPTIMIZATION) ?? false);
+  }
+
+  static Future<bool> requestIgnoringBatteryOptimizations() async {
+    return (await channel.invokeMethod(_REQUEST_IGNORING_BATTERY_OPTIMIZATION) ?? false);
+  }
+
+  static Future<void> gotoIgnoreBatteryOptimizationsSettings() async {
+    await channel.invokeMethod(_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
   }
 
   static Future<Map<String, dynamic>> execute(ServiceData initialData) async {

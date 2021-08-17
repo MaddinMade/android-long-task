@@ -24,6 +24,7 @@ class AndroidLongTask(private val activity: FlutterActivity, private val binaryM
   private val START_SERVICE = "START_SERVICE"
   private val STOP_SERVICE = "STOP_SERVICE"
   private val RUN_DART_FUNCTION = "RUN_DART_FUNCTION"
+  private val IS_SERVICE_RUNNING = "IS_SERVICE_RUNNING"
   private val SET_SERVICE_DATA = "SET_SERVICE_DATA"
   private val GET_SERVICE_DATA = "GET_SERVICE_DATA"
   private val NOTIFY_UPDATE = "NOTIFY_UPDATE"
@@ -101,6 +102,10 @@ class AndroidLongTask(private val activity: FlutterActivity, private val binaryM
           } else {
             result.error("SERVICE_NOT_STARTED", "can't execute dart code before starting service", "")
           }
+        }
+        IS_SERVICE_RUNNING -> {
+          Log.d("DART/NATIVE", "is service running")
+          result.success(isServiceRunning(AppService::class.java))
         }
       }
     }

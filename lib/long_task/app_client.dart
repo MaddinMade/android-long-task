@@ -11,6 +11,7 @@ class AppClient {
   static const _GET_SERVICE_DATA = 'GET_SERVICE_DATA';
   static const _STOP_SERVICE = 'STOP_SERVICE';
   static const _RUN_DART_FUNCTION = 'RUN_DART_FUNCTION';
+  static const _IS_SERVICE_RUNNING = 'IS_SERVICE_RUNNING';
   static const _NOTIFY_UPDATE = 'NOTIFY_UPDATE';
   // ignore: close_sinks
   static final _serviceDataStreamController = StreamController<Map<String, dynamic>?>.broadcast();
@@ -33,6 +34,10 @@ class AppClient {
 
   static Future<void> stopService() async {
     await channel.invokeMethod(_STOP_SERVICE);
+  }
+
+  static Future<bool> isServiceRunning() async {
+    return (await channel.invokeMethod(_IS_SERVICE_RUNNING)??false);
   }
 
   static Future<Map<String, dynamic>> execute(ServiceData initialData) async {

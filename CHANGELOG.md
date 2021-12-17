@@ -1,3 +1,10 @@
+## 0.4.8
+
+Fix subtype error bug
+
+## 0.4.7
+
+updating documentaion
 ## 0.4.6
 
 fixing a bug
